@@ -1,8 +1,0 @@
-django
-gunicorn
-fabric3
-boto
-django-storages
-pycryptodome
-ssh
-
