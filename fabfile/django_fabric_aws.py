@@ -39,6 +39,7 @@ Commands include:
 
 '''
 
+from fabric.contrib.files import append, exists, sed
 from fabric.api import *
 from fabric.colors import green as _green, yellow as _yellow
 from project_conf import *
@@ -46,6 +47,7 @@ import tasks
 import boto
 import boto.ec2
 import time
+import random
 
 # AWS user credentials
 env.user = fabconf['SERVER_USERNAME']

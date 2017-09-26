@@ -1,8 +1,8 @@
 django
 gunicorn
-Fabric
+fabric3
 boto
 django-storages
-pycrypto
+pycryptodome
 ssh
 
