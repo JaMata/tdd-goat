@@ -1,0 +1,8 @@
+django
+gunicorn
+Fabric
+boto
+django-storages
+pycrypto
+ssh
+
