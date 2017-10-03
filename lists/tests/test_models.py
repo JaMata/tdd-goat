@@ -29,7 +29,7 @@ class ItemModelTest(TestCase):
 			item = Item(list=list_, text='bla')
 			item.full_clean()
 			
-	def test_can_save_same_item_to_different_lsits(self):
+	def test_can_save_same_item_to_different_lists(self):
 		list1 = List.objects.create()
 		list2 = List.objects.create()
 		Item.objects.create(list=list1, text='bla')
