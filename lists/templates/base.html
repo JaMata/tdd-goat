@@ -14,6 +14,9 @@
 				<a class="navbar-brand" href="/">Superlists</a>
 				{% if user.email %}
 					<ul class="navbar-nav">
+						<li class="nav-item"><a href="{% url 'my_lists' user.email %}">My lists</a></li>
+					</ul>
+					<ul class="navbar-nav">
 						<li class="nav-item">Logged in as {{ user.email }}</li>
 						<li><a href="{% url 'logout' %}">Log out</a></li>
 					</ul>
@@ -43,6 +46,7 @@
 				<div class="col-lg-6 col-md-6 jumbotron">
 					<div class="text-center">
 						<h1>{% block header_text %}{% endblock %}</h1>
+						{% block list_form %}
 						<form method="POST" action="{% block form_action %}{% endblock %}">
 							{{ form.text }}
 							{% csrf_token %}
@@ -50,12 +54,19 @@
 								<div class="has-error">{{ form.text.errors }}</div>
 							{% endif %}
 						</form>
+						{% endblock %}
 					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-lg-6 col-md-6">
 					{% block table %}
+					{% endblock %}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 col-md-6">
+					{% block extra_content %}
 					{% endblock %}
 				</div>
 			</div>
