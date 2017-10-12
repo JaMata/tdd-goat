@@ -5,3 +5,9 @@
 .has-error {
 	color: #9B111E;
 }
+
+.jordi.jumbotron {
+	margin-top: 1em;
+	border-radius: 0px;
+	background-color: #f8f9fa
+}

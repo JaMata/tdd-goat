@@ -9,8 +9,8 @@
 	</head>
 	
 	<body>
-		<div class="container">
-			<nav class="navbar navbar-light bg-light justify-content-between">
+		<div class="container-fluid">
+			<nav class="navbar navbar-light bg-light justify-content-between w-100">
 				<a class="navbar-brand" href="/">Superlists</a>
 				{% if user.email %}
 					<ul class="navbar-nav">
@@ -30,8 +30,8 @@
 			</nav>
 			
 			{% if messages %}
-				<div class="row">
-					<div class="col-lg-8 col-md-8">
+				<div class="row justify-content-center">
+					<div class="col-lg-12 col-md-12">
 						{% for message in messages %}
 							{% if message.level_tag == 'success' %}
 								<div class="alert alert-success">{{ message }}</div>
@@ -43,9 +43,9 @@
 				</div>
 			{% endif %}
 			<div class="row justify-content-center">
-				<div class="col-lg-6 col-md-6 jumbotron">
-					<div class="text-center">
-						<h1>{% block header_text %}{% endblock %}</h1>
+				<div class="jordi jumbotron col-lg-12 col-md-12">
+					<div class="container text-center">
+						<h1 class="display-3">{% block header_text %}{% endblock %}</h1>
 						{% block list_form %}
 						<form method="POST" action="{% block form_action %}{% endblock %}">
 							{{ form.text }}
