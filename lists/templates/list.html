@@ -7,4 +7,34 @@
 			<tr><td>{{ forloop.counter }}: {{ item.text }}<td></tr>
 		{% endfor %}
 	</table>
-{% endblock %}	
+{% endblock %}
+{% block extra_content %}
+	<div class="row justify-content-center">
+		<div class="card-group">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Contributors</h4>
+					<p class="card-text"></p>
+					<ul>
+						{% if list.owner %}
+							<li class="text-success" id="id_list_owner">{{ list.owner.email }}</li>
+						{% endif %}
+						{% for sharee in list.shared_with.all %}
+							<li class="list-sharee">{{ sharee.email }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Share</h4>
+					<p class="card-text">Invite other doers to the list of contributors.</p>
+					<form class="form-inline" method="POST" action="{% url 'share_list' list.id %}" >
+						{% csrf_token %}
+						<input class="form-control mr-sm-2" name="sharee" placeholder="your-friend@example.com" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

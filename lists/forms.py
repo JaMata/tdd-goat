@@ -13,6 +13,7 @@ class ItemForm(forms.models.ModelForm):
 		fields = ('text',)
 		widgets = {
 			'text': forms.fields.TextInput(attrs={
+				'id': 'id_text',
 				'placeholder': 'Enter a to-do item',
 				'class': 'form-control form-control-lg',
 				'autofocus': 'autofocus',
@@ -31,12 +32,13 @@ class NewListForm(ItemForm):
 		else:
 			return List.create_new(first_item_text=self.cleaned_data['text'])
 
-			
+
 class ExistingListItemForm(ItemForm):
 
 	def __init__(self, for_list, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.instance.list = for_list
+
 
 	def validate_unique(self):
 		try:
