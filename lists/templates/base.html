@@ -11,28 +11,31 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row justify-content-center">
-				<nav class="navbar navbar-light bg-light justify-content-between col-lg-10 col-md-10">
+				<nav class="navbar navbar-expand-md navbar-light bg-light col-lg-10 col-md-10">
 					<a class="navbar-brand" href="/">Superlists</a>
-					{% if user.email %}
-						<ul class="navbar-nav">
-							<li class="nav-item"><a href="{% url 'my_lists' user.email %}">My lists</a></li>
-						</ul>
-						<ul class="navbar-nav">
-							<li class="nav-item">Logged in as {{ user.email }}</li>
-							<li><a href="{% url 'logout' %}">Log out</a></li>
-						</ul>
-					{% else %}
-						<form class="form-inline" method="POST" action="{% url 'send_login_email' %}">
-							<input class="form-control mr-sm-2" placeholder="Email" name="email" type="text" />
-							{% csrf_token %}
-							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-						</form>
-					{% endif %}
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#superNav" aria-controls="superNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div id="superNav" class="justify-content-end navbar-collapse collapse">
+						{% if user.email %}
+							<div class="navbar-nav">
+								<a class="nav-link" href="{% url 'my_lists' user.email %}">Lists</a>
+								<div class="navbar-text">Logged in as {{ user.email }}</div>
+								<a class="nav-link" href="{% url 'logout' %}">Log out</a>
+							</div>
+						{% else %}
+							<form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'send_login_email' %}">
+								<input class="form-control mr-sm-2" placeholder="Email" name="email" type="text" />
+								{% csrf_token %}
+								<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+							</form>
+						{% endif %}
+					</div>
 				</nav>
 			</div>
 			
 			<div class="row justify-content-center">
-				<div class="jordi jumbotron col-lg-10 col-md-10">
+				<div class="jordi jumbotron bg-light mt-3 col-lg-10 col-md-10">
 					<div class="container text-center">
 						<h1 class="display-3">{% block header_text %}{% endblock %}</h1>
 						{% block list_form %}
@@ -66,15 +69,17 @@
 				<div class="row justify-content-center">
 					{% for message in messages %}
 						{% if message.level_tag == 'success' %}
-							<div class="jordi alert alert-success col-lg-10 col-md-10">{{ message }}</div>
+							<div class="alert alert-success border-0 col-lg-10 col-md-10">{{ message }}</div>
 						{% else %}
-							<div class="jordi alert alert-warning col-lg-10 col-md-10">{{ message }}</div>
+							<div class="alert alert-warning border-0 col-lg-10 col-md-10">{{ message }}</div>
 						{% endif %}
 					{% endfor %}
 				</div>
 			{% endif %}
 		</div>
 		<script src="/static/jquery-3.2.1.min.js"></script>
+		<script src="/static/popper.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<script src="/static/list.js"></script>
 		<script>
 			$(document).ready(function () {

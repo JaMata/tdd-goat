@@ -1,3 +1,7 @@
+* {
+	border-radius: 0 !important;
+}
+
 #id_text {
 	margin-top: 2ex;
 }
@@ -10,13 +14,9 @@
 	list-style: none;
 }
 
-.jordi.jumbotron {
-	margin-top: 1em;
-	border-radius: 0px;
-	background-color: #f8f9fa
-}
-
-.jordi.alert {
-	border: none;
-	border-radius: 0px;
+@media (min-width: 768px) {
+	div.navbar-nav > *{
+		padding-left: 1em;
+		padding-right: 1em;
+	}
 }

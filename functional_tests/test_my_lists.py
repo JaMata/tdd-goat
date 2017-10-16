@@ -13,8 +13,8 @@ class MyListsTest(FunctionalTest):
 		self.add_list_item('Immanentize eschaton')
 		first_list_url = self.browser.current_url
 		
-		# She notices a "My lists" link, for the first time.
-		self.browser.find_element_by_link_text('My lists').click()
+		# She notices a "Lists" link, for the first time.
+		self.browser.find_element_by_link_text('Lists').click()
 		
 		# She sees that her list is in there, named according to its
 		# first list item
@@ -26,16 +26,16 @@ class MyListsTest(FunctionalTest):
 		self.browser.get(self.live_server_url)
 		self.add_list_item('Click cows')
 		second_list_url = self.browser.current_url
-		# Under "my lists", her new list appears
-		self.browser.find_element_by_link_text('My lists').click()
+		# Under "Lists", her new list appears
+		self.browser.find_element_by_link_text('Lists').click()
 		self.wait_for( lambda: self.browser.find_element_by_link_text('Click cows'))
 		self.browser.find_element_by_link_text('Click cows').click()
 		self.wait_for(
 		lambda: self.assertEqual(self.browser.current_url, second_list_url))
 		
-		# She logs out. The "My lists" option disappears
+		# She logs out. The "Lists" option disappears
 		self.browser.find_element_by_link_text('Log out').click()
 		self.wait_for(lambda: self.assertEqual(
-			self.browser.find_elements_by_link_text('My lists'),
+			self.browser.find_elements_by_link_text('Lists'),
 			[]
 		))
